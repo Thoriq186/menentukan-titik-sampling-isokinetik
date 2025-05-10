@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kalkulator Titik Sampling Isokinetik</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, select { margin: 5px 0; padding: 5px; width: 100%; }
+    .container { max-width: 500px; margin: auto; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Kalkulator Titik Sampling Isokinetik</h2>
+
+    <label>Diameter cerobong (cm):</label>
+    <input type="number" id="diameter" placeholder="Contoh: 100" />
+
+    <label>Jumlah titik (menurut standar):</label>
+    <select id="jumlahTitik">
+      <option value="4">4 Titik</option>
+      <option value="6">6 Titik</option>
+      <option value="8">8 Titik</option>
+      <option value="10">10 Titik</option>
+    </select>
+
+    <button onclick="hitungTitik()">Hitung Titik Sampling</button>
+
+    <div class="result" id="output"></div>
+  </div>
+
+  <script>
+    function hitungTitik() {
+      const diameter = parseFloat(document.getElementById('diameter').value);
+      const jumlahTitik = parseInt(document.getElementById('jumlahTitik').value);
+      const radius = diameter / 2;
+
+      // Hitung posisi titik sampling berdasarkan distribusi radial
+      let output = 'Titik Sampling (jarak dari tepi cerobong):<br>';
+      for (let i = 1; i <= jumlahTitik; i++) {
+        let posisi = (radius * Math.sqrt((i - 0.5) / jumlahTitik)).toFixed(2);
+        output += `Titik ${i}: ${posisi} cm<br>`;
+      }
+
+      document.getElementById('output').innerHTML = output;
+    }
+  </script>
+</body>
+</html>
