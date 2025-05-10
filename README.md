@@ -1,0 +1,1 @@
+# menentukan-titik-sampling-isokinetik
